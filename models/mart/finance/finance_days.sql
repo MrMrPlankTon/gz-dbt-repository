@@ -1,4 +1,3 @@
-
 WITH temp AS (
    SELECT
      date_date
@@ -14,7 +13,6 @@ WITH temp AS (
  FROM {{ref("int_orders_operational")}}
  GROUP BY  date_date
  )
-
  SELECT
      date_date
      , revenue

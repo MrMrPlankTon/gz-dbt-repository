@@ -23,7 +23,7 @@
            - unique:
                 column_name: "(orders_id || '-' || pdt_id)"
 
-       - name: product
+       - name: product #alias
          identifier : raw_gz_product
          description: product_purchase_price of Greenweez / we have on row per order_id
          columns:
