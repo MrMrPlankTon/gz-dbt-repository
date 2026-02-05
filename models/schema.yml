@@ -1,0 +1,46 @@
+# schema.yml
+
+ version: 2
+
+ sources:
+   - name: gz_raw_data
+     database: main-bloom-484811-f4 #data set
+     schema: gz_raw_data #table
+     loader: bigquery 
+     description: "projet_greenweez"
+       
+     tables:
+       - name: sales 
+         identifier : raw_gz_sales
+         description: sales of Greenweez / we have on row per product_id found in each orders_id
+         
+
+         columns:
+           - name: date_date
+             description: date of purchase
+           - name: orders_id
+         tests:
+           - unique:
+                column_name: "(orders_id || '-' || pdt_id)"
+
+       - name: product #alias
+         identifier : raw_gz_product
+         description: product_purchase_price of Greenweez / we have on row per order_id
+         columns:
+           - name: products_id
+             tests: 
+              - unique
+              - not_null
+           - name: purchSE_PRICE
+             tests: 
+              - not_null     
+
+       - name: ship
+         identifier : raw_gz_ship
+         description: ship_cost of Greenweez / we have on row per order_id found in each orders_id
+         columns:
+           - name: orders_id
+             description: date of purchase
+             tests: 
+              - unique
+              - not_null
